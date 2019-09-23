@@ -229,6 +229,7 @@ export class MyDateRangePicker implements OnChanges, OnDestroy, ControlValueAcce
     }
 
     onUserDateRangeInput(value: string): void {
+        console.log('onUserDateRangeInput');
         this.invalidDateRange = false;
         if (value.length === 0) {
             if (this.drus.isInitializedDate(this.beginDate) && this.drus.isInitializedDate(this.endDate)) {
