@@ -10,7 +10,20 @@
     "moduleResolution": "node",
     "removeComments": true,
     "noImplicitAny": true,
-    "suppressImplicitAnyIndexErrors": true
+    "suppressImplicitAnyIndexErrors": true,
+    "types": [
+      // add node as an option
+      "node"
+   ],
+   // typeRoots option has been previously configured
+   "typeRoots": [
+      // add path to @types
+      "node_modules/@types"
+   ],
+   "lib": [
+    "es2017",
+    "dom"
+  ]
   },
   "exclude": [
     "node_modules",
