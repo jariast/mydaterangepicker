@@ -1,13 +1,19 @@
-import { Component, Input, Output, EventEmitter, OnChanges, OnDestroy, SimpleChanges, ElementRef, Renderer, ViewChild, ChangeDetectorRef, ViewEncapsulation, forwardRef } from "@angular/core";
+import { Component, Input, Output, EventEmitter, OnChanges, OnDestroy, SimpleChanges, ElementRef, Renderer, ViewChild, ChangeDetectorRef, ViewEncapsulation, forwardRef, AfterViewInit } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { IMyDateRange, IMyDate, IMyMonth, IMyCalendarDay, IMyCalendarMonth, IMyCalendarYear, IMyWeek, IMyDayLabels, IMyMonthLabels, IMyOptions, IMyDateRangeModel, IMyInputFieldChanged, IMyCalendarViewChanged, IMyInputFocusBlur, IMyDateSelected } from "./interfaces/index";
 import { DateRangeUtilService } from "./services/my-date-range-picker.date.range.util.service";
+// import Inputmask from "inputmask";
+
+
+
+var Inputmask = require('inputmask')
 
 // webpack1_
 declare var require: any;
 const myDrpStyles: string = require("./my-date-range-picker.component.css");
 const myDrpTemplate: string = require("./my-date-range-picker.component.html");
 // webpack2_
+
 
 export const MYDRP_VALUE_ACCESSOR: any = {
     provide: NG_VALUE_ACCESSOR,
@@ -20,6 +26,7 @@ enum InputFocusBlur {focus = 1, blur = 2}
 enum KeyCode {enter = 13, esc = 27, space = 32}
 enum MonthId {prev = 1, curr = 2, next = 3}
 
+
 @Component({
     selector: "my-date-range-picker",
     exportAs: "mydaterangepicker",
@@ -29,7 +36,7 @@ enum MonthId {prev = 1, curr = 2, next = 3}
     encapsulation: ViewEncapsulation.None
 })
 
-export class MyDateRangePicker implements OnChanges, OnDestroy, ControlValueAccessor {
+export class MyDateRangePicker implements OnChanges, OnDestroy, ControlValueAccessor, AfterViewInit {
     @Input() options: any;
     @Input() defaultMonth: string;
     @Input() selDateRange: string;
@@ -134,6 +141,13 @@ export class MyDateRangePicker implements OnChanges, OnDestroy, ControlValueAcce
                 this.resetMonthYearSelect();
             }
         });
+    }
+
+    ngAfterViewInit() {
+        console.log('ngAfterViewInit')
+        var selector = document.getElementById("testingMask");
+    var input = new Inputmask('99/99/9999 - 99/99/999[9]', {'placeholder': ' ', 'showMaskOnHover': false, 'showMaskOnFocus': false, 'jitMasking': true});
+    input.mask(selector);
     }
 
     resetMonthYearSelect(): void {

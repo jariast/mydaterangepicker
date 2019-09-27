@@ -11,8 +11,14 @@
     "removeComments": true,
     "moduleResolution": "node",
     "declaration": true,
-    "lib": ["es2015", "dom"],
-    "types": []
+    "lib": ["es2017", "dom"],
+    "types": [
+      // add node as an option
+      "node"
+   ], "typeRoots": [
+    // add path to @types
+    "node_modules/@types"
+ ]
   },
   "angularCompilerOptions": {
     "genDir": ".tmpbuild",

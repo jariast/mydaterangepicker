@@ -1,6 +1,6 @@
 {
-  "name": "mydaterangepicker",
-  "version": "4.2.1",
+  "name": "mydaterangepicker-test",
+  "version": "4.2.2",
   "description": "Angular date range picker",
   "keywords": [
     "Angular2",
@@ -25,7 +25,10 @@
   "main": "bundles/mydaterangepicker.umd.js",
   "typings": "index.d.ts",
   "module": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "@types/inputmask": "^4.0.0",
+    "inputmask": "^4.0.9"
+  },
   "devDependencies": {
     "@angular/common": "2.2.4",
     "@angular/compiler": "2.2.4",
@@ -37,7 +40,7 @@
     "@angular/platform-server": "2.2.4",
     "@types/core-js": "0.9.34",
     "@types/jasmine": "2.5.38",
-    "@types/node": "7.0.1",
+    "@types/node": "^7.0.1",
     "angular2-template-loader": "0.6.0",
     "awesome-typescript-loader": "3.0.0-beta.18",
     "codecov": "1.0.1",
