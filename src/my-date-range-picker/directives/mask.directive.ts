@@ -102,16 +102,35 @@ export class MaskDirective {
       }
 
       this.displayValue = displayValue;
-      console.log('DISPLAYVALUE');
+      // console.log('DISPLAYVALUE');
       if (newValue !== displayValue) {
         this.ngControl.control.setValue(displayValue);
         if (displayValue.length > start) {
           let char = displayValue.charAt(start - 1);
-          if(char === ' ' || char === '/' || char ==="-"){
-            const diff = displayValue.length - start;
-            this.renderer.selectRootElement(this.el).nativeElement.setSelectionRange(start + diff, end + diff);
-          }else {
+          console.log('Display value:');
+          console.log(displayValue);
+          console.log('DisplayValue length');
+          console.log(displayValue.length);
+          console.log('START');
+          console.log(start);
+          console.log('END');
+          console.log(end);
+          console.log('CHAR');
+          console.log(char);
+          console.log('OLD VALUE masked');
+          console.log(this.value);
+          console.log('--------------********************---------');
+          if (this.value && this.value.length >= displayValue.length) {
+            console.log('Deleting chars');
             this.renderer.selectRootElement(this.el).nativeElement.setSelectionRange(start, end);
+          } else {
+            console.log('adding chars');
+            if (char === ' ' || char === '/' || char === '-') {
+              const diff = displayValue.length - start;
+              this.renderer.selectRootElement(this.el).nativeElement.setSelectionRange(start + diff, end + diff);
+            } else {
+              this.renderer.selectRootElement(this.el).nativeElement.setSelectionRange(start, end);
+            }
           }
         }
       }
