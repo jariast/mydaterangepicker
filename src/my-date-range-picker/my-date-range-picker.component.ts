@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter, OnChanges, OnDestroy, SimpleCha
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { IMyDateRange, IMyDate, IMyMonth, IMyCalendarDay, IMyCalendarMonth, IMyCalendarYear, IMyWeek, IMyDayLabels, IMyMonthLabels, IMyOptions, IMyDateRangeModel, IMyInputFieldChanged, IMyCalendarViewChanged, IMyInputFocusBlur, IMyDateSelected } from "./interfaces/index";
 import { DateRangeUtilService } from "./services/my-date-range-picker.date.range.util.service";
-import { MaskGenerator } from "./interfaces/mask-interface"
+import { MaskGenerator } from "./interfaces/mask-interface";
 
 // webpack1_
 declare var require: any;
@@ -57,10 +57,7 @@ export class MyDateRangePicker implements OnChanges, OnDestroy, ControlValueAcce
     dateRangeFormat: string = "";
     dayIdx: number = 0;
     weekDayOpts: Array<string> = ["su", "mo", "tu", "we", "th", "fr", "sa"];
-    private static CPF = '999.999.999-99';
-    mask: MaskGenerator = {
-        generateMask: () => '99/99/9999 - 99/99/9999'
-    }
+    maskGen: MaskGenerator;
 
     selectMonth: boolean = false;
     selectYear: boolean = false;
@@ -81,6 +78,20 @@ export class MyDateRangePicker implements OnChanges, OnDestroy, ControlValueAcce
     titleAreaText: string = "";
 
     globalListener: Function;
+
+    private _maskString: string;
+
+    @Input() set maskString(value: string) {
+        this._maskString = value;
+        this.maskGen = {
+            generateMask: () => this._maskString
+        };
+    }
+
+    get maskString(): string {
+        return this._maskString;
+    }
+
 
     // Default options
     opts: IMyOptions = {
@@ -236,7 +247,6 @@ export class MyDateRangePicker implements OnChanges, OnDestroy, ControlValueAcce
     }
 
     onUserDateRangeInput(value: string): void {
-        console.log('onUserDateRangeInput');
         this.invalidDateRange = false;
         if (value.length === 0) {
             if (this.drus.isInitializedDate(this.beginDate) && this.drus.isInitializedDate(this.endDate)) {

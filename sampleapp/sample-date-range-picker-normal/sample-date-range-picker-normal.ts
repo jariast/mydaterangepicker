@@ -48,7 +48,7 @@ export class SampleDateRangePickerNormal implements OnInit {
     placeholderTxt: string = '';
 
     constructor() {
-        console.log('constructor(): SampleDateRangePickerNormal');
+        // console.log('constructor(): SampleDateRangePickerNormal');
     }
 
     clearDateRange() {
@@ -136,11 +136,11 @@ export class SampleDateRangePickerNormal implements OnInit {
     }
 
     ngOnInit() {
-        console.log('onInit(): SampleDateRangePickerNormal');
+        // console.log('onInit(): SampleDateRangePickerNormal');
     }
 
     onDateRangeChanged(event: IMyDateRangeModel) {
-        console.log('onDateRangeChanged(): Begin: ', event.beginDate, ' - beginJsDate: ', new Date(event.beginJsDate).toLocaleDateString(), ' - End: ', event.endDate, ' - endJsDate: ', new Date(event.endJsDate).toLocaleDateString(), ' - formatted: ', event.formatted, ' - beginEpoc timestamp: ', event.beginEpoc, ' - endEpoc timestamp: ', event.endEpoc);
+        // console.log('onDateRangeChanged(): Begin: ', event.beginDate, ' - beginJsDate: ', new Date(event.beginJsDate).toLocaleDateString(), ' - End: ', event.endDate, ' - endJsDate: ', new Date(event.endJsDate).toLocaleDateString(), ' - formatted: ', event.formatted, ' - beginEpoc timestamp: ', event.beginEpoc, ' - endEpoc timestamp: ', event.endEpoc);
         if(event.formatted !== '') {
             this.selectedTextNormal = 'Formatted: ' + event.formatted;
             this.border = '1px solid #CCC';
@@ -154,15 +154,15 @@ export class SampleDateRangePickerNormal implements OnInit {
     }
 
     onInputFieldChanged(event: IMyInputFieldChanged) {
-        console.log('onInputFieldChanged(): Value: ', event.value, ' - dateRangeFormat: ', event.dateRangeFormat, ' - valid: ', event.valid);
+        // console.log('onInputFieldChanged(): Value: ', event.value, ' - dateRangeFormat: ', event.dateRangeFormat, ' - valid: ', event.valid);
     }
 
     onCalendarViewChanged(event: IMyCalendarViewChanged) {
-        console.log('onCalendarViewChanged(): Year: ', event.year, ' - month: ', event.month, ' - first: ', event.first, ' - last: ', event.last);
+        // console.log('onCalendarViewChanged(): Year: ', event.year, ' - month: ', event.month, ' - first: ', event.first, ' - last: ', event.last);
     }
 
     onDateSelected(event: IMyDateSelected) {
-        console.log('onDateSelected(): Value: ', event);
+        // console.log('onDateSelected(): Value: ', event);
     }
 
     getCopyOfOptions(): IMyDrpOptions {
